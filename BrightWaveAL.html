@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrightWaveal — Power the Future</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0077ff;
+            --primary-light: #4da6ff;
+            --primary-dark: #0056b3;
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --text-light: #666666;
+            --card-bg: #f8fbff;
+            --border: #e0e7ff;
+            --shadow: 0 4px 20px rgba(0,119,255,0.08);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --text: #f1f5f9;
+            --text-light: #94a3b8;
+            --card-bg: #1e293b;
+            --border: #334155;
+            --shadow: 0 4px 20px rgba(0,0,0,0.3);
+            --primary: #60a5fa;
+            --primary-light: #93c5fd;
+            --primary-dark: #2563eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.9);
+            transition: var(--transition);
+        }
+
+        [data-theme="dark"] nav {
+            background: rgba(15,23,42,0.9);
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .dark-toggle {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--text);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            background: url('panel 1.1.jpg')
+        }
+
+        .hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(0.7);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,119,255,0.3), rgba(255,255,255,0.1));
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: black;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2.2rem;
+            background: linear-gradient(45deg, var(--primary), var(--primary-light));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,119,255,0.3);
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::after {
+            left: 100%;
+        }
+
+        /* Floating Icons */
+        .floating-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .icon {
+            position: absolute;
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.1);
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            display: block;
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        /* About */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .infographic {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .step-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .step-text {
+            flex: 1;
+        }
+
+        .step-text h4 {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .arrow {
+            position: absolute;
+            font-size: 2rem;
+            color: var(--primary);
+            opacity: 0.3;
+        }
+
+        .arrow:nth-child(1) { top: 30%; left: 22%; transform: rotate(15deg); }
+        .arrow:nth-child(2) { top: 50%; left: 45%; transform: rotate(-10deg); }
+        .arrow:nth-child(3) { top: 30%; right: 22%; transform: rotate(-15deg); }
+
+        /* Products & Services */
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,119,255,0.15);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(45deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        .service-card h3 {
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .see-all {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .see-all a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Why Choose Us */
+        .why-us {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        .feature.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .feature h3 {
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        /* Full background image section with overlay text */
+.panel-highlight {
+  position: relative;
+  background: url('panel 2.jpg') center/cover no-repeat;
+  height: 100px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 4rem auto;
+  max-width: 1250px;
+}
+
+.panel-highlight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45); /* dark overlay for text contrast */
+}
+
+.panel-overlay {
+  position: relative;
+  color: #fff;
+  text-align: center;
+  z-index: 1;
+}
+
+.panel-overlay h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.panel-link {
+  display: inline-block;
+  background: linear-gradient(45deg, var(--primary), var(--primary-light));
+  color: #fff;
+  text-decoration: none;
+  padding: 0.7rem 1.6rem;
+  border-radius: 50px;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.panel-link:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(45deg, var(--primary-light), var(--primary-dark));
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .panel-highlight {
+    height: 220px;
+    margin: 2rem 1rem;
+  }
+  .panel-overlay h2 {
+    font-size: 1.3rem;
+  }
+}
+
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.914));
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .overlay-text {
+            color: white;
+            font-weight: 600;
+        }
+
+        .success-story {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 1rem;
+            font-style: italic;
+            color: var(--text-light);
+            border-left: 4px solid var(--primary);
+        }
+
+        /* Contact */
+        .contact {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--primary);
+        }
+        .contact-quote {
+  text-align: center;
+  margin-top: 2rem;
+  font-style: italic;
+  color: var(--text-light);
+  font-size: 1rem;
+}
+
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg);
+            color: var(--text);
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0,119,255,0.1);
+        }
+
+        .map-container {
+            height: 300px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .address {
+            margin-top: 1.5rem;
+            color: var(--text-light);
+        }
+       /* Floating labels — robust with current markup (label BEFORE input) */
+.form-group.floating { position: relative; }
+
+.form-group.floating label {
+  position: absolute;
+  left: 1rem;
+  top: 0.95rem;
+  font-size: 0.95rem;
+  color: var(--text-light);
+  pointer-events: none;
+  background: var(--bg);
+  padding: 0 0.25rem;
+  transition: var(--transition);
+}
+
+.form-group.floating input,
+.form-group.floating textarea {
+  padding: 1.2rem 1rem 0.6rem;
+}
+
+/* Raise label on focus */
+.form-group.floating:focus-within label {
+  top: -0.55rem;
+  left: 0.85rem;
+  font-size: 0.75rem;
+  color: var(--primary);
+}
+
+/* Keep label raised when there is content */
+.form-group.floating:has(input:not(:placeholder-shown)) label,
+.form-group.floating:has(textarea:not(:placeholder-shown)) label {
+  top: -0.55rem;
+  left: 0.85rem;
+  font-size: 0.75rem;
+  color: var(--primary);
+}
+
+
+
+        /* Footer */
+        footer {
+            background: var(--card-bg);
+            padding: 3rem 5% 1.5rem;
+            margin-top: 5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            background: var(--primary-dark);
+        }
+
+        .footer-text {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .sustainability {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about,
+            .contact {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .contact {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body data-theme="light">
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">BrightWaveal</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#why">Why Us</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="dark-toggle" aria-label="Toggle dark mode">
+            <i class="fas fa-moon"></i>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <video autoplay muted loop playsinline>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-sunlight-reflecting-on-solar-panels-3333-small.mp4" type="video/mp4">
+        </video>
+        
+        <div class="floating-icons" id="floatingIcons"></div>
+        
+        <div class="hero-content">
+            <h1>Power the Future with BrightWaveal</h1>
+            <p>Efficient, sustainable, and beautifully engineered solar solutions.</p>
+            <a href="#contact" class="btn">Get a Free Quote</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="fade-in">
+        <h2 class="section-title">Who We Are</h2>
+        <div class="about">
+            <div class="about-text">
+                <h3>Next-Generation Solar Energy</h3>
+                <p>BrightWaveal is a cutting-edge solar panel assembly and installation company dedicated to smart, sustainable energy solutions. We combine innovative technology with eco-conscious manufacturing to deliver clean power that lasts.</p>
+                <p>Our mission is simple: make solar energy accessible, efficient, and beautiful for homes and businesses worldwide.</p>
+            </div>
+            <div class="infographic">
+                <div class="step">
+                    <div class="step-icon"><i class="fas fa-bolt"></i></div>
+                    <div class="step-text">
+                        <h4>Savings boost</h4>
+                        <p>Helping you save more with solar subsidies, tax rebates, and easy financing.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-icon"><i class="fas fa-house"></i></div>
+                    <div class="step-text">
+                        <h4>Tailored Solutions</h4>
+                        <p>Providing customized solar solutions tailored to your home and budget.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-icon"><i class="fas fa-tools"></i></div>
+                    <div class="step-text">
+                        <h4>Complete Service</h4>
+                        <p>Delivering complete end-to-end solar services—from consultation to maintenance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products & Services -->
+    <section id="services" class="fade-in">
+        <h2 class="section-title">Products & Services</h2>
+        <div class="services">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-sun"></i>
+                </div>
+                <h3>Customized Panels</h3>
+                <p>Each solar panel system is custom-built to match your space, energy goals, and budget. </p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h3>Residential Panels</h3>
+                <p>Custom solar solutions designed for homeowners seeking energy independence and lower bills.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-building"></i>
+                </div>
+                <h3>Commercial Solutions</h3>
+                <p>Scalable systems for businesses, reducing operational costs and carbon footprint.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h3>Maintenance & Monitoring</h3>
+                <p>24/7 system monitoring and proactive maintenance to ensure peak performance.</p>
+            </div>
+        </div>
+        <div class="see-all">
+            <a href="#">See all services →</a>
+        </div>
+    </section>
+    
+
+    <!-- Why Choose Us -->
+    <section id="why" class="fade-in">
+        <h2 class="section-title">Why Choose BrightWaveal</h2>
+        <div class="why-us">
+            <div class="feature">
+                <div class="feature-icon">💪</div>
+                <h3>Built to Last</h3>
+                <p>Every panel we assemble uses only premium-grade materials, ensuring durability, efficiency, and performance that stand the test of time.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">⚙️</div>
+                <h3>Custom Assembly & Integration</h3>
+                <p>Tailored solutions that seamlessly integrate with your property's architecture and energy needs.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🌍</div>
+                <h3>Trusted Quality</h3>
+                <p>We use TATA Solar Panels, known for their exceptional reliability and industry-leading quality — a name that speaks for itself in sustainable energy.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="panel-highlight fade-in">
+  <div class="panel-overlay">
+    <h2>Know more about the panels we use</h2>
+    <a href="#services" class="panel-link">Learn More</a>
+  </div>
+</section>
+
+    <!-- Projects Gallery -->
+    <section id="projects" class="fade-in">
+  <h2 class="section-title">Our Projects</h2>
+  <div class="gallery">
+    <div class="gallery-item">
+      <img src="IMG_20251109_144220.jpg" alt="3Kw TATA Power Solar">
+      <div class="overlay">
+        <div class="overlay-text">
+          View Details
+          <p>3Kw TATA Power Solar</p>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="Screenshot_20251109_144459.jpg" alt="5Kw TATA Solar Power">
+      <div class="overlay">
+        <div class="overlay-text">
+          View Details
+          <p>5Kw TATA Solar Power</p>
+        </div>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <img src="ChatGPT Image Nov 9, 2025, 04_24_59 PM.png" alt="Commercial Project">
+      <div class="overlay">
+        <div class="overlay-text"> 
+            <p>Be part of BrightWaveal’s mission. Experience unmatched solar performance, reduce your costs, and motivate others to take the step toward sustainable power.”</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="fade-in">
+        <h2 class="section-title">Get in Touch</h2>
+        <p class="contact-quote">
+  “A quick call can often bring better clarity — feel free to reach out directly.”
+</p>
+
+        <div class="contact">
+            <form id="contact-form" autocomplete="off" novalidate>
+      <div class="form-group floating">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder=" " required>
+      </div>
+
+      <div class="form-group floating">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder=" " required>
+      </div>
+
+      <div class="form-group floating">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" placeholder=" " minlength="10" required></textarea>
+        <small class="hint"><span id="msg-count">0</span>/500</small>
+      </div>
+
+      <div class="progress-wrap" aria-hidden="true">
+        <div class="progress-bar" id="form-progress"></div>
+      </div>
+
+      <button type="submit" class="btn" id="submit-btn">
+        <span class="btn-text">Send Message</span>
+        <span class="btn-spinner" aria-hidden="true"></span>
+      </button>
+      <p id="form-status" class="form-note" aria-live="polite" style="margin-top:1rem;"></p>
+    </form>
+            <div>
+                <div class="map-container">
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d397.8114488072798!2d83.21251665946976!3d17.768965554398687!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a3967b422a53d91%3A0x1176d30a722a11b3!2s7-320%2C%20Ravi%20Nagar%2C%20Naidu%20Thota%2C%20Visakhapatnam%2C%20Andhra%20Pradesh%20530047%2C%20India!5e1!3m2!1sen!2sde!4v1762649448055!5m2!1sen!2sde" 
+      width="100%" 
+      height="100%" 
+      style="border:0;" 
+      allowfullscreen="" 
+      loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+                <div class="address">
+                    <p><strong>BrightWaveal </strong></p>
+                    <p>Vepagunta, Visakhapatnam-530047</p>
+                    <p>Phone: +91 9003752840</p>
+                    <p>Email: ambatisatya2002@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text">© 2025 BrightWaveal — Shaping Tomorrow’s Energy.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/brightwaveal?utm_source=ig_web_button_share_sheet&igsh=MWpxcHJ4emRva2N3"><i class="fab fa-instagram"></i></a>
+            </div>
+            
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+  const form = document.getElementById('contact-form');
+  const inputs = {
+    name: document.getElementById('name'),
+    email: document.getElementById('email'),
+    message: document.getElementById('message')
+  };
+  const msgCount = document.getElementById('msg-count');
+  const progress = document.getElementById('form-progress');
+  const submitBtn = document.getElementById('submit-btn');
+  const statusEl = document.getElementById('form-status');
+
+  // --- Helpers ---
+  const emailOK = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  const mark = (el, good) => {
+    el.classList.remove('valid','invalid');
+    if (good === true) el.classList.add('valid');
+    if (good === false) el.classList.add('invalid');
+  };
+  const notify = (msg, type='success', timeout=3500) => {
+    const root = document.getElementById('toast-root');
+    const n = document.createElement('div');
+    n.className = `toast ${type}`;
+    n.textContent = msg;
+    root.appendChild(n);
+    setTimeout(() => n.remove(), timeout);
+  };
+  const updateProgress = () => {
+    let validParts = 0;
+    if (inputs.name.value.trim().length >= 2) validParts++;
+    if (emailOK(inputs.email.value.trim())) validParts++;
+    if (inputs.message.value.trim().length >= 10) validParts++;
+    progress.style.width = (validParts / 3) * 100 + '%';
+    submitBtn.disabled = validParts < 3;
+  };
+
+  // --- Live validation ---
+  inputs.name.addEventListener('input', () => {
+    const ok = inputs.name.value.trim().length >= 2;
+    mark(inputs.name, ok);
+    updateProgress();
+  });
+
+  inputs.email.addEventListener('input', () => {
+    const ok = emailOK(inputs.email.value.trim());
+    mark(inputs.email, ok);
+    updateProgress();
+  });
+
+  // Char counter + limit
+  const MAX = 500;
+  inputs.message.addEventListener('input', () => {
+    let v = inputs.message.value;
+    if (v.length > MAX) inputs.message.value = v = v.slice(0, MAX);
+    msgCount.textContent = v.length;
+    const ok = v.trim().length >= 10;
+    mark(inputs.message, ok);
+    updateProgress();
+    autoGrow(inputs.message);
+  });
+
+  // Auto-expand textarea
+  function autoGrow(t) {
+    t.style.height = 'auto';
+    t.style.height = (t.scrollHeight) + 'px';
+  }
+  autoGrow(inputs.message);
+
+  // Initialize states on load
+  updateProgress();
+
+  // --- Submit UX wrapper (works alongside your existing submit logic) ---
+  form.addEventListener('submit', async (e) => {
+    // If you already handle submit elsewhere, you can remove the next line.
+    e.preventDefault();
+
+    // Guard invalid
+    if (submitBtn.disabled) {
+      form.classList.add('shake');
+      setTimeout(() => form.classList.remove('shake'), 350);
+      statusEl.textContent = 'Please complete all fields correctly.';
+      return;
+    }
+
+    // Loading state
+    submitBtn.classList.add('loading');
+    submitBtn.disabled = true;
+
+    try {
+      // EXAMPLE demo submit (replace with your Supabase/Fetch call)
+      // await yourSubmitFunction();
+
+      // If using your existing Supabase code, call notify() in its success path.
+      await new Promise(res => setTimeout(res, 900)); // demo delay
+      notify('Thanks! We received your message.', 'success');
+      statusEl.textContent = 'Thanks! We received your message.';
+      form.reset();
+      inputs.name.classList.remove('valid','invalid');
+      inputs.email.classList.remove('valid','invalid');
+      inputs.message.classList.remove('valid','invalid');
+      msgCount.textContent = '0';
+      updateProgress();
+      autoGrow(inputs.message);
+    } catch (err) {
+      console.error(err);
+      notify('Something went wrong. Please try again.', 'error');
+      statusEl.textContent = 'Something went wrong. Please try again.';
+    } finally {
+      submitBtn.classList.remove('loading');
+      submitBtn.disabled = false;
+    }
+  });
+
+  // Optional: expose notify for use in your existing submit handler
+  window.BrightWavealNotify = notify;
+})();
+        // Dark Mode Toggle
+        const toggle = document.querySelector('.dark-toggle');
+        const body = document.body;
+        const icon = toggle.querySelector('i');
+
+        toggle.addEventListener('click', () => {
+            if (body.getAttribute('data-theme') === 'light') {
+                body.setAttribute('data-theme', 'dark');
+                icon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.setAttribute('data-theme', 'light');
+                icon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Load saved theme
+        if (localStorage.getItem('theme') === 'dark') {
+            body.setAttribute('data-theme', 'dark');
+            icon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        // Floating Icons
+        const floatingIcons = document.getElementById('floatingIcons');
+        const icons = ['☀️', '⚡', '🔋', '🌍'];
+        
+        function createIcon() {
+            const icon = document.createElement('div');
+            icon.className = 'icon';
+            icon.textContent = icons[Math.floor(Math.random() * icons.length)];
+            icon.style.left = Math.random() * 100 + '%';
+            icon.style.animationDelay = Math.random() * 15 + 's';
+            icon.style.animationDuration = (Math.random() * 10 + 15) + 's';
+            floatingIcons.appendChild(icon);
+
+            setTimeout(() => {
+                icon.remove();
+            }, 30000);
+        }
+
+        setInterval(createIcon, 3000);
+
+        // Energy Counter Animation
+        const counter = document.getElementById('kwh-counter');
+        let start = 12847392;
+        const target = start + Math.floor(Math.random() * 50000) + 10000;
+
+        function updateCounter() {
+            start += Math.floor(Math.random() * 150) + 50;
+            counter.textContent = start.toLocaleString() + ' kWh generated this year';
+        }
+
+        setInterval(updateCounter, 5000);
+
+        // Scroll Animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in, .feature').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+
+
+    </script>
+</body>
+</html>
